@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des départements par régions{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <form action="" method="GET">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <select class="form-control" name="region" id="region">
+                        <option value="Toutes">Toutes les régions</option>
+                        {% for region in listeRegions %}
+                            <option value="{{region.code}}" {% if app.request.query.get("region") == region.code %}selected{% endif %}>{{region.nom}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <select class="form-control" name="region" id="region">
+                        <option value="Toutes">Toutes les régions</option>
+                        {% for departement in listedepartements %}                            
+                            {% if departement.codeRegion %} <option value="{{region.code}}" {% if app.request.query.get("region") == region.code %}selected{% endif %}>{{region.nom}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </form>
+    <h1>Liste des départements</h1>
+    <div class="row">
+        {% for departement in listeDepartements %}
+            <div class="col-md-3">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">
+                        n° {{departement.code}}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{departement.nom}}</h4>
+                    </div>
+                </div>
+            </div>    
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

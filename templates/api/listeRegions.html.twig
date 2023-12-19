@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des region{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Liste des régions</h1>
+    <div class="row">
+        {% for region in listeRegions %}
+            <div class="col-md-3">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">
+                        n° {{region.code}}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{region.nom}}</h4>
+                    </div>
+                </div>
+            </div>    
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
